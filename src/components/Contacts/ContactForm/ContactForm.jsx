@@ -2,16 +2,19 @@ import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { Container, Form, Label, Input, Btn } from './ContactForm.styled';
-import {
-  useCreateContactMutation,
-  useGetAllContactsQuery,
-} from 'redux/contacts/contacts-slice';
+import * as contactsOperations from '../../../redux/contacts/contacts-operations';
+import { useDispatch } from 'react-redux';
+// import {
+//   useCreateContactMutation,
+//   useGetAllContactsQuery,
+// } from 'redux/contacts/contacts-slice';
 
 const ContactForm = () => {
+  const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [createContact] = useCreateContactMutation();
-  const { data } = useGetAllContactsQuery('');
+  // const [createContact] = useCreateContactMutation();
+  // const { data } = useGetAllContactsQuery('');
 
   const nameInputId = uuidv4();
   const numberInputId = uuidv4();
@@ -34,16 +37,14 @@ const ContactForm = () => {
   const handleOnSubmit = e => {
     e.preventDefault();
 
-    const newContact = {
-      name: name,
-      number: number,
-    };
+    dispatch(contactsOperations.createContact({ name, number }));
+    dispatch(contactsOperations.getAllContacts());
 
-    if (data.find(item => item.name === name)) {
-      alert(`${name + ' is already in contacts'}`);
-      return;
-    }
-    createContact(newContact);
+    // if (data.find(item => item.name === name)) {
+    //   alert(`${name + ' is already in contacts'}`);
+    //   return;
+    // }
+    // createContact(newContact);
     formReset();
   };
 
