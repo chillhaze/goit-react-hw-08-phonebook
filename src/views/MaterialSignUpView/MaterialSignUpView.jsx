@@ -32,17 +32,17 @@ import * as authOperations from '../../redux/auth/auth-operations';
 //   );
 // }
 
-export const MaterialSignUpView = () => {
+const MaterialSignUpView = () => {
   const dispatch = useDispatch();
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
-    console.log({
-      name: data.get('name'),
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    // console.log({
+    //   name: data.get('name'),
+    //   email: data.get('email'),
+    //   password: data.get('password'),
+    // });
 
     const newUser = {
       name: data.get('name'),
@@ -125,7 +125,7 @@ export const MaterialSignUpView = () => {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Link href="/login" variant="body2">
-                  Already have an account? Sign in
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>
@@ -135,3 +135,5 @@ export const MaterialSignUpView = () => {
     </Container>
   );
 };
+
+export default MaterialSignUpView;

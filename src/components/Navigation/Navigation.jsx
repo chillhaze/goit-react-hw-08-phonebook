@@ -12,18 +12,27 @@ export const Navigation = () => {
   return (
     <LinkContainer>
       <NavLink exact to="/">
-        <Button sx={{ mr: 1 }}>Home</Button>
+        <Button variant="outlined" sx={{ mr: 1 }}>
+          Home
+        </Button>
       </NavLink>
 
       {isLoggedIn ? (
         <NavLink exact to="/contacts">
-          <Button variant="outlined">Contacts</Button>
+          <Button size="medium" variant="outlined">
+            Contacts
+          </Button>
         </NavLink>
       ) : (
-        <Button href="#text-buttons" disabled>
-          Contacts
-          <FaLock style={{ marginLeft: 5 }} />
-        </Button>
+        <NavLink exact to="/contacts">
+          <Button
+          // variant="outlined"
+          // disabled
+          >
+            Contacts
+            <FaLock style={{ marginLeft: 5 }} />
+          </Button>
+        </NavLink>
       )}
     </LinkContainer>
   );

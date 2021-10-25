@@ -1,22 +1,33 @@
-import { Switch, Route } from 'react-router-dom';
-import { useState } from 'react';
+import {
+  Switch,
+  // Route
+} from 'react-router-dom';
+import { useState, Suspense, lazy } from 'react';
 import { AppBar } from '../AppBar/AppBar';
-import { HomeView } from '../../views/HomeView/HomeView';
-// import { RegisterView } from '../../views/RegisterView/RegisterView';
-// import { LoginView } from '../../views/LoginView/LoginView';
-import { MaterialLoginView } from '../../views/MaterialLoginView/MaterialLoginView';
-import { ContactsView } from '../../views/ContactsView/ContactsView';
-import { MaterialSignUpView } from '../../views/MaterialSignUpView/MaterialSignUpView';
+
+import LoaderElement from '../LoaderElement/LoaderElement';
 
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import IconButton from '@mui/material/IconButton';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
-import Brightness7Icon from '@mui/icons-material/Brightness7';
+import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
+import PublicRoute from 'components/PublicRoute/PublicRoute';
+import * as authSelectors from '../../redux/auth/auth-selectors';
+import { useSelector } from 'react-redux';
+
+const HomeView = lazy(() => import('../../views/HomeView/HomeView'));
+const ContactsView = lazy(() =>
+  import('../../views/ContactsView/ContactsView'),
+);
+const MaterialSignUpView = lazy(() =>
+  import('../../views/MaterialSignUpView/MaterialSignUpView'),
+);
+const MaterialLoginView = lazy(() =>
+  import('../../views/MaterialLoginView/MaterialLoginView'),
+);
 
 const App = () => {
   const [darkTheme, setDarkTheme] = useState(false);
+  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
 
   const theme = React.useMemo(
     () =>
@@ -42,12 +53,33 @@ const App = () => {
         <AppBar onClick={handleThemeChange} theme={theme} />
 
         <Switch>
-          <Route exact path="/" component={HomeView} />
-          {/* <Route path="/register" component={RegisterView} />
-          <Route path="/login" component={LoginView} /> */}
-          <Route exact path="/contacts" component={ContactsView} />
-          <Route path="/signup" component={MaterialSignUpView} />
-          <Route path="/login" component={MaterialLoginView} />
+          <Suspense
+            fallback={<LoaderElement type="TailSpin" height={26} width={26} />}
+          >
+            <PublicRoute exact path="/">
+              <HomeView />
+            </PublicRoute>
+
+            <PublicRoute path="/signup" restricted redirectTo={'/contacts'}>
+              <MaterialSignUpView />
+            </PublicRoute>
+
+            <PublicRoute path="/login" restricted redirectTo={'/contacts'}>
+              <MaterialLoginView />
+            </PublicRoute>
+
+            <PrivateRoute path="/contacts">
+              <ContactsView />
+            </PrivateRoute>
+            {/* Маршруты с обычным Route, без редиректа */}
+            {/* <Route exact path="/" component={HomeView} /> */}
+            {/* <Route path="/signup" component={MaterialSignUpView} /> */}
+            {/* <Route path="/login" component={MaterialLoginView} /> */}
+            {/* <Route exact path="/contacts" component={ContactsView} /> */}
+            {/* Маршруты на компоненты без MaterialUI */}
+            {/* <Route path="/register" component={RegisterView} /> */}
+            {/* <Route path="/login" component={LoginView} /> */}
+          </Suspense>
         </Switch>
       </ThemeProvider>
     </>

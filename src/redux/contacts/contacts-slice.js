@@ -3,17 +3,22 @@ import * as contactsOperations from './contacts-operations.js';
 
 const initialState = {
   contact: { name: null, number: null },
-  allContacts: null,
+  allContacts: [],
   token: null,
+  isLoading: false,
 };
 
 export const contactsSlice = createSlice({
   name: 'contacts',
   initialState,
   extraReducers: {
+    [contactsOperations.getAllContacts.pending](state, _) {
+      state.isLoading = true;
+    },
     [contactsOperations.getAllContacts.fulfilled](state, action) {
       state.allContacts = action.payload;
       state.token = action.payload.token;
+      state.isLoading = false;
     },
     [contactsOperations.createContact.fulfilled](state, action) {
       state.contact = action.payload;

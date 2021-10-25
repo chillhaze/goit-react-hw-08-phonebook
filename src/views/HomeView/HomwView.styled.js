@@ -12,4 +12,5 @@ export const Container = styled.div`
 
 export const Title = styled.div`
   text-align: center;
+  color: #1976d2;
 `;

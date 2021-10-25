@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const LinkContainer = styled.div`
   display: flex;
+  align-items: center;
 `;
 // export const LinkWrapper = styled.div`
 //   margin: 0px 10px 0px 0px;

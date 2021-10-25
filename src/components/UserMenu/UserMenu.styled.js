@@ -5,7 +5,6 @@ export const Container = styled.div`
   justify-content: space-between;
 `;
 export const Title = styled.h2`
-  padding: 5px;
   font-weight: 400;
 `;
 export const Accent = styled.span`

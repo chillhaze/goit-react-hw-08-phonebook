@@ -1,38 +1,47 @@
-import * as authSelectors from '../../redux/auth/auth-selectors';
-import { useSelector } from 'react-redux';
-import ContactForm from '../../components/Contacts/ContactForm/ContactForm';
 import Filter from '../../components/Contacts/Filter/Filter';
+import FormModal from '../../components/FormModal/FormModal';
 import ContactList from '../../components/Contacts/ContactList/ContactList';
-import { RiContactsBook2Fill } from 'react-icons/ri';
 import { IoMdContacts } from 'react-icons/io';
-import { Container, Title, SubTitle } from './ContactsView.styled';
-
+import { Container, SubTitle } from './ContactsView.styled';
+import { useState } from 'react';
+//-----------------------
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+//---------------------------
 // import { useGetAllContactsQuery } from '../../redux/contacts/contacts-slice';
 
-export const ContactsView = () => {
-  const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+const ContactsView = () => {
   // const { data, error, isFetching } = useGetAllContactsQuery('');
+  const [showModal, setShowModal] = useState(false);
+
+  const handleMmodalClose = () => {
+    setShowModal(false);
+  };
 
   return (
-    <div>
-      <>
-        {/* {error && <Title>{error.status} Not Found</Title>} */}
+    <CssBaseline>
+      {/* {error && <Title>{error.status} Not Found</Title>} */}
 
-        {isLoggedIn && (
-          <Container>
-            <Title>
-              Phonebook <RiContactsBook2Fill style={{ marginLeft: '3' }} />
-            </Title>
-            <ContactForm />
-            <Filter />
-            <SubTitle>
-              Contacts
-              <IoMdContacts style={{ marginLeft: '3' }} />
-            </SubTitle>
-            <ContactList />
-          </Container>
-        )}
-      </>
-    </div>
+      <Container>
+        {showModal && <FormModal onClose={handleMmodalClose} />}
+
+        <Button
+          onClick={() => setShowModal(true)}
+          variant="contained"
+          sx={{ pt: 1, pb: 1 }}
+        >
+          Add new contact
+        </Button>
+        <Filter />
+
+        <SubTitle>
+          Contacts
+          <IoMdContacts style={{ marginLeft: '3' }} />
+        </SubTitle>
+        <ContactList />
+      </Container>
+    </CssBaseline>
   );
 };
+
+export default ContactsView;

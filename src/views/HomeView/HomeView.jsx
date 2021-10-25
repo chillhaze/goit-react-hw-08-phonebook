@@ -3,7 +3,7 @@ import { Container, Title } from './HomwView.styled';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 
-export const HomeView = () => {
+const HomeView = () => {
   return (
     <CssBaseline>
       <Container>
@@ -16,3 +16,5 @@ export const HomeView = () => {
     </CssBaseline>
   );
 };
+
+export default HomeView;

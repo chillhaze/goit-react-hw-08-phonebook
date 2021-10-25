@@ -14,7 +14,7 @@ import { FormWrapper } from './MaterialLoginView.styled';
 import { useDispatch } from 'react-redux';
 import * as authOperations from '../../redux/auth/auth-operations';
 
-export const MaterialLoginView = () => {
+const MaterialLoginView = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = event => {
@@ -61,6 +61,7 @@ export const MaterialLoginView = () => {
               margin="normal"
               required
               fullWidth
+              type="email"
               id="email"
               label="Email Address"
               name="email"
@@ -84,7 +85,7 @@ export const MaterialLoginView = () => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
               <Grid item xs></Grid>
@@ -100,3 +101,5 @@ export const MaterialLoginView = () => {
     </Container>
   );
 };
+
+export default MaterialLoginView;

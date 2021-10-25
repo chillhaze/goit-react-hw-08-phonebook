@@ -12,11 +12,13 @@ export const AuthNavigation = () => {
       </LinkWrapper> */}
 
       <NavLink to="/login">
-        <Button variant="outlined">Log in</Button>
+        <Button size="medium" variant="outlined">
+          Log in
+        </Button>
       </NavLink>
 
       <NavLink to="/signup">
-        <Button variant="outlined" sx={{ ml: 1 }}>
+        <Button size="medium" variant="outlined" sx={{ ml: 1 }}>
           Sign Up
         </Button>
       </NavLink>

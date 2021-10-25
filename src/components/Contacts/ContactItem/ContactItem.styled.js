@@ -10,9 +10,10 @@ export const ListItem = styled.li`
   color: rgb(111, 121, 124);
   font-size: 14px;
   line-height: 20px;
+  text-align: left;
 
   background-color: #fff;
-  border: 1px solid teal;
+  border: 1px solid #1976d2;
   border-radius: 5px;
   box-shadow: 1px 3px 10px -4px #050505;
 
@@ -36,7 +37,7 @@ export const BtnDelete = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
-  color: teal;
+  color: #1976d2;
   border: 0;
   outline: 0;
   background-color: transparent;

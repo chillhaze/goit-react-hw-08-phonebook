@@ -18,6 +18,7 @@ export const UserMenu = () => {
         </Title>
         <Button
           sx={{ ml: 1 }}
+          size="medium"
           variant="contained"
           type="button"
           onClick={() => dispatch(authOperations.logOut())}

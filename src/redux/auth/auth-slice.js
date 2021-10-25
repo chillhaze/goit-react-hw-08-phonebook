@@ -3,19 +3,11 @@ import * as authOperations from './auth-operations.js';
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const initialState = {
-  user: { name: null, email: null },
+  user: { name: '', email: '' },
   token: null,
   isLoggedIn: false,
+  error: '',
 };
-
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-//   unset(token) {
-//     axios.defaults.headers.common.Authorization = '';
-//   },
-// };
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -30,6 +22,9 @@ export const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+    },
+    [authOperations.logIn.rejected](state, action) {
+      state.isLoggedIn = false;
     },
     [authOperations.logOut.fulfilled](state, _) {
       state.user = { name: null, email: null };

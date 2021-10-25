@@ -17,21 +17,29 @@ export const signup = createAsyncThunk('auth/signup', async credentials => {
     const { data } = await axios.post('users/signup', credentials);
     token.set(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 });
 
 export const logIn = createAsyncThunk('auth/login', async credentials => {
-  console.log(credentials);
   try {
     const { data } = await axios.post('users/login', credentials);
     token.set(data.token);
     return data;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 });
 
 export const logOut = createAsyncThunk('auth/logout', async credentials => {
   try {
     await axios.post('users/logout', credentials);
     token.unset();
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 });
