@@ -4,6 +4,7 @@ import ContactList from '../../components/Contacts/ContactList/ContactList';
 import { IoMdContacts } from 'react-icons/io';
 import { Container, SubTitle } from './ContactsView.styled';
 import { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 //-----------------------
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -21,7 +22,7 @@ const ContactsView = () => {
   return (
     <CssBaseline>
       {/* {error && <Title>{error.status} Not Found</Title>} */}
-
+      <Toaster position="top-center" />
       <Container>
         {showModal && <FormModal onClose={handleMmodalClose} />}
 

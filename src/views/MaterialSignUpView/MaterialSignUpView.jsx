@@ -3,7 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -13,6 +12,7 @@ import Container from '@mui/material/Container';
 import { FormWrapper } from './MaterialSignUpView.styled';
 import { useDispatch } from 'react-redux';
 import * as authOperations from '../../redux/auth/auth-operations';
+import { Link } from 'react-router-dom';
 
 // function Copyright(props) {
 //   return (
@@ -124,7 +124,10 @@ const MaterialSignUpView = () => {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/login" variant="body2">
+                <Link
+                  to="/login"
+                  style={{ textDecoration: 'underline', color: '#1976d2' }}
+                >
                   Already have an account? Log in
                 </Link>
               </Grid>

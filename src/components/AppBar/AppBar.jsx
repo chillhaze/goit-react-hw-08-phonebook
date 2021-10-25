@@ -1,10 +1,10 @@
-import { Header } from '../AppBar/AppBar.styled';
+import { useSelector } from 'react-redux';
+import * as authSelectors from '../../redux/auth/auth-selectors';
 import { Navigation } from '../Navigation/Navigation';
 import { AuthNavigation } from '../AuthNavigation/AuthNavigation';
 import { UserMenu } from '../UserMenu/UserMenu';
-import { useSelector } from 'react-redux';
-import * as authSelectors from '../../redux/auth/auth-selectors';
-// -----------------------------------
+import { Header } from '../AppBar/AppBar.styled';
+// ----------------------------------- MUI
 import CssBaseline from '@mui/material/CssBaseline';
 import IconButton from '@mui/material/IconButton';
 import Brightness4Icon from '@mui/icons-material/Brightness4';

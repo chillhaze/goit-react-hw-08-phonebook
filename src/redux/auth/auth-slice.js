@@ -3,9 +3,11 @@ import * as authOperations from './auth-operations.js';
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const initialState = {
-  user: { name: '', email: '' },
+  user: { name: null, email: null },
   token: null,
   isLoggedIn: false,
+  isLoading: false,
+  isFetchingCurrentUser: false,
   error: '',
 };
 
@@ -13,23 +15,72 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
+    //------------------ Signup
     [authOperations.signup.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
     },
+    [authOperations.signup.pending](state, action) {
+      state.isLoggedIn = false;
+      state.isLoading = true;
+      state.error = '';
+    },
+    [authOperations.signup.rejected](state, action) {
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = action.payload.message;
+    },
+    //------------------ Login
     [authOperations.logIn.fulfilled](state, action) {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLoggedIn = true;
+      state.isLoading = false;
+    },
+    [authOperations.logIn.pending](state, action) {
+      state.isLoggedIn = false;
+      state.isLoading = true;
+      state.error = '';
     },
     [authOperations.logIn.rejected](state, action) {
       state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = action.payload.message;
     },
+    //------------------ logout
     [authOperations.logOut.fulfilled](state, _) {
       state.user = { name: null, email: null };
       state.token = null;
       state.isLoggedIn = false;
+    },
+    [authOperations.logOut.pending](state, action) {
+      state.isLoggedIn = false;
+      state.isLoading = true;
+      state.error = '';
+    },
+    [authOperations.logOut.rejected](state, action) {
+      state.isLoggedIn = false;
+      state.isLoading = false;
+      state.error = action.payload.message;
+    },
+    //------------------ Fetch Current User
+    [authOperations.fetchCurrentUser.fulfilled](state, action) {
+      state.user = action.payload;
+      state.isLoggedIn = true;
+      state.isFetchingCurrentUser = false;
+    },
+    [authOperations.fetchCurrentUser.pending](state, _) {
+      state.isFetchingCurrentUser = true;
+      state.isLoggedIn = false;
+      state.isLoading = true;
+      state.error = '';
+    },
+    [authOperations.fetchCurrentUser.rejected](state, action) {
+      state.isFetchingCurrentUser = false;
+      state.isLoggedIn = false;
+      state.isLoading = false;
     },
   },
 });

@@ -1,18 +1,15 @@
-import {
-  Switch,
-  // Route
-} from 'react-router-dom';
-import { useState, Suspense, lazy } from 'react';
-import { AppBar } from '../AppBar/AppBar';
-
-import LoaderElement from '../LoaderElement/LoaderElement';
-
-import * as React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useState, useEffect, useMemo, Suspense, lazy } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as authSelectors from '../../redux/auth/auth-selectors';
+import * as authOperations from '../../redux/auth/auth-operations';
 import PrivateRoute from 'components/PrivateRoute/PrivateRoute';
 import PublicRoute from 'components/PublicRoute/PublicRoute';
-import * as authSelectors from '../../redux/auth/auth-selectors';
-import { useSelector } from 'react-redux';
+import { Switch } from 'react-router-dom';
+import { AppBar } from '../AppBar/AppBar';
+import { Toaster } from 'react-hot-toast';
+import LoaderElement from '../LoaderElement/LoaderElement';
+// ----------------------------------- MUI
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const HomeView = lazy(() => import('../../views/HomeView/HomeView'));
 const ContactsView = lazy(() =>
@@ -27,9 +24,14 @@ const MaterialLoginView = lazy(() =>
 
 const App = () => {
   const [darkTheme, setDarkTheme] = useState(false);
-  // const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
+  const dispatch = useDispatch();
+  const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
 
-  const theme = React.useMemo(
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
+  const theme = useMemo(
     () =>
       createTheme({
         palette: {
@@ -48,8 +50,9 @@ const App = () => {
   };
 
   return (
-    <>
+    !isFetchingCurrentUser && (
       <ThemeProvider theme={theme}>
+        <Toaster position="top-center" />
         <AppBar onClick={handleThemeChange} theme={theme} />
 
         <Switch>
@@ -71,18 +74,10 @@ const App = () => {
             <PrivateRoute path="/contacts">
               <ContactsView />
             </PrivateRoute>
-            {/* Маршруты с обычным Route, без редиректа */}
-            {/* <Route exact path="/" component={HomeView} /> */}
-            {/* <Route path="/signup" component={MaterialSignUpView} /> */}
-            {/* <Route path="/login" component={MaterialLoginView} /> */}
-            {/* <Route exact path="/contacts" component={ContactsView} /> */}
-            {/* Маршруты на компоненты без MaterialUI */}
-            {/* <Route path="/register" component={RegisterView} /> */}
-            {/* <Route path="/login" component={LoginView} /> */}
           </Suspense>
         </Switch>
       </ThemeProvider>
-    </>
+    )
   );
 };
 
