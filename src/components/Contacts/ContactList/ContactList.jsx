@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types';
-import { ContactItem } from '../ContactItem/ContactItem';
-import { useSelector } from 'react-redux';
-import * as contactsSelectors from 'redux/contacts/contacts-selectors';
-// import { useGetAllContactsQuery } from 'redux/contacts/contacts-slice';
-import { Container, List } from './ContactList.styled';
-
-import * as contactsOperations from '../../../redux/contacts/contacts-operations';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import * as contactsOperations from '../../../redux/contacts/contacts-operations';
+import { useSelector, useDispatch } from 'react-redux';
+import * as contactsSelectors from 'redux/contacts/contacts-selectors';
+import { ContactItem } from '../ContactItem/ContactItem';
+import { Container, List } from './ContactList.styled';
+// ----------------------------------- MUI
+import Typography from '@mui/material/Typography';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -15,19 +14,22 @@ const ContactList = () => {
   const contacts = useSelector(contactsSelectors.getAllContacts);
 
   useEffect(() => {
+    //get all contscts
     dispatch(contactsOperations.getAllContacts());
   }, [dispatch]);
 
-  // const { data } = useGetAllContactsQuery('');
-
+  //using filter on contacts list
   const filteredContacts = contacts.filter(item =>
     item.name.toLowerCase().includes(filtered.toLowerCase()),
   );
-  // const filteredContacts = true;
 
   return (
     <Container>
-      {contacts.length === 0 && <p>Phonebook is empty</p>}
+      {contacts.length === 0 && (
+        <Typography component="h4" variant="h4" sx={{ mt: 2, p: 1 }}>
+          Phonebook is empty yet
+        </Typography>
+      )}
       {contacts && filteredContacts && (
         <List>
           {filteredContacts.map(({ id, name, number }) => {

@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as authOperations from './auth-operations.js';
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const initialState = {
   user: { name: null, email: null },
@@ -85,6 +84,7 @@ export const authSlice = createSlice({
   },
 });
 
+//-------------------------------RTK usage
 // export const authApi = createApi({
 //   reducerPath: 'authApi',
 //   baseQuery: fetchBaseQuery({

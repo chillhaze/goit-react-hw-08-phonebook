@@ -1,5 +1,6 @@
-import { LoaderWrapper } from 'components/LoaderElement/LoaderElement.styled';
 import Loader from 'react-loader-spinner';
+import { LoaderWrapper } from 'components/LoaderElement/LoaderElement.styled';
+
 const LoaderElement = () => {
   return (
     <LoaderWrapper>

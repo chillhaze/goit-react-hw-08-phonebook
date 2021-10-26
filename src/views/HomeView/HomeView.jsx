@@ -1,5 +1,5 @@
-import { Container, Title } from './HomwView.styled';
-//-----------------------------------
+import { Container, Title, Accent } from './HomwView.styled';
+// ----------------------------------- MUI
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 
@@ -8,8 +8,8 @@ const HomeView = () => {
     <CssBaseline>
       <Container>
         <Title>
-          <Typography variant="h2" component="h2">
-            Wellcome to Phonebook-App
+          <Typography variant="h4" component="h1">
+            Wellcome to <Accent>Phonebook</Accent> App
           </Typography>
         </Title>
       </Container>

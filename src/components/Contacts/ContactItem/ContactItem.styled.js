@@ -4,19 +4,13 @@ export const ListItem = styled.li`
   position: relative;
   min-width: 160px;
   width: 22%;
-  padding: 10px 10px;
-  margin: 7px;
-
-  color: rgb(111, 121, 124);
-  font-size: 14px;
-  line-height: 20px;
+  padding: 0px 5px;
+  margin: 5px;
   text-align: left;
-
-  background-color: #fff;
-  border: 1px solid #1976d2;
-  border-radius: 5px;
-  box-shadow: 1px 3px 10px -4px #050505;
-
+  /* background-color: #fff; */
+  /* border: 1px solid #478d95; */
+  /* border-radius: 5px; */
+  /* box-shadow: 1px 3px 10px -4px #050505; */
   transition: transform 0.25s linear, -webkit-transform 0.25s linear;
   overflow: hidden;
 
@@ -25,10 +19,10 @@ export const ListItem = styled.li`
   }
 `;
 export const Name = styled.p`
-  font-weight: 400;
+  /* font-weight: 400; */
 `;
 export const Number = styled.p`
-  font-weight: 600;
+  /* font-weight: 600; */
 `;
 export const BtnDelete = styled.button`
   padding: 5px;
@@ -37,7 +31,7 @@ export const BtnDelete = styled.button`
   position: absolute;
   bottom: 0;
   right: 0;
-  color: #1976d2;
+  color: #5bc5d2;
   border: 0;
   outline: 0;
   background-color: transparent;

@@ -3,29 +3,23 @@ import styled from '@emotion/styled';
 export const Container = styled.div`
   display: flex;
   justify-content: space-between;
+  font-size: 16px;
+  width: 250px;
+  @media (max-width: 550px) {
+    font-size: 12px;
+    width: 80px;
+  }
 `;
 export const Title = styled.h2`
   font-weight: 400;
+  @media (max-width: 550px) {
+    display: none;
+  }
 `;
 export const Accent = styled.span`
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
+  @media (max-width: 550px) {
+    font-size: 18px;
+  }
 `;
-// export const Button = styled.div`
-//   margin: 0px 10px 0px 0px;
-//   padding: 5px 15px 5px 15px;
-//   color: white;
-//   background-color: teal;
-//   border: none;
-//   border-radius: 3px;
-//   cursor: pointer;
-//   /* box-shadow: 1px 3px 10px -4px #050505; */
-//   &:hover,
-//   &:focus {
-//     background-color: #0b6e6e;
-//     color: white;
-//   }
-//   @media (max-width: 550px) {
-//     margin: 0px 0px 5px 0px;
-//   }
-// `;

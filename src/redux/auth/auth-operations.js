@@ -53,7 +53,7 @@ export const logOut = createAsyncThunk(
     try {
       await axios.post('users/logout', credentials);
       token.unset();
-      toast.loading(`Have a nice day!`, { duration: 4000, icon: <FcLike /> });
+      toast.loading(`Have a nice day!`, { duration: 3000, icon: <FcLike /> });
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }

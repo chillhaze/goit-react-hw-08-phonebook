@@ -1,7 +1,7 @@
 import * as authOperations from '../../redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import { FormWrapper } from './LoginView.styled';
+import { FormWrapper } from './SignUpView.styled';
 // ----------------------------------- MUI
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -14,24 +14,25 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
 
-const LoginView = () => {
+const SignUpView = () => {
   const dispatch = useDispatch();
-
   const handleSubmit = event => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     // eslint-disable-next-line no-console
     // console.log({
+    //   name: data.get('name'),
     //   email: data.get('email'),
     //   password: data.get('password'),
     // });
 
-    const user = {
+    const newUser = {
+      name: data.get('name'),
       email: data.get('email'),
       password: data.get('password'),
     };
-    //Send info to login user
-    dispatch(authOperations.logIn(user));
+    //Send info to register new user
+    dispatch(authOperations.signup(newUser));
   };
 
   return (
@@ -52,53 +53,63 @@ const LoginView = () => {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Log in
+          Sign up
         </Typography>
         {/* <FormWrapper> */}
-        <Box
-          component="form"
-          onSubmit={handleSubmit}
-          // noValidate
-          sx={{ mt: 1 }}
-        >
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            type="email"
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            autoFocus
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-          />
-
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Grid container spacing={2}>
+            <Grid
+              item
+              xs={12}
+              // sm={6}
+            >
+              <TextField
+                autoComplete="given-name"
+                name="name"
+                required
+                fullWidth
+                id="firstName"
+                label="Name"
+                autoFocus
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="new-password"
+              />
+            </Grid>
+          </Grid>
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Log In
+            Sign Up
           </Button>
-          <Grid container>
-            <Grid item xs></Grid>
+          <Grid container justifyContent="flex-end">
             <Grid item>
               <Link
-                to="/signup"
+                to="/login"
                 style={{ textDecoration: 'underline', color: '#1976d2' }}
               >
-                Don't have an account? Sign Up
+                Already have an account? Log in
               </Link>
             </Grid>
           </Grid>
@@ -109,4 +120,4 @@ const LoginView = () => {
   );
 };
 
-export default LoginView;
+export default SignUpView;

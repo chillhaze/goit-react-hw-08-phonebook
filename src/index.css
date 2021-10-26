@@ -52,8 +52,12 @@ body {
   font-family: -apple-system, 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
+  min-height: 100vh;
   background-color: rgb(229, 241, 248);
+  background-image: url(./images/bg-hd.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 code {

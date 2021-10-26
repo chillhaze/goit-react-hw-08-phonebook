@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
-import { Wrapper } from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFiltered } from 'redux/contacts/contacts-selectors';
 import { changeFilter } from 'redux/contacts/contacts-actions';
-//--------------------------
+import { Wrapper } from './Filter.styled';
+// ----------------------------------- MUI
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CssBaseline from '@mui/material/Button';
