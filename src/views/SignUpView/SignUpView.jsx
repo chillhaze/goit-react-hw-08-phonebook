@@ -1,7 +1,7 @@
 import * as authOperations from '../../redux/auth/auth-operations';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { FormWrapper } from './SignUpView.styled';
+// import { FormWrapper } from './SignUpView.styled';
 // ----------------------------------- MUI
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';

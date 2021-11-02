@@ -17,7 +17,7 @@ export const UserMenu = () => {
           Online: <Accent>{name}</Accent>
         </Title>
         <Button
-          sx={{ ml: 1 }}
+          sx={{ ml: 1, mt: 1 }}
           size="small"
           variant="contained"
           type="button"

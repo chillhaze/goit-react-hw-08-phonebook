@@ -8,8 +8,8 @@ const HomeView = () => {
     <CssBaseline>
       <Container>
         <Title>
-          <Typography variant="h4" component="h1">
-            Wellcome to <Accent>Phonebook</Accent> App
+          <Typography variant="h5" component="h1">
+            Wellcome to <Accent>Phonebook</Accent> <b>App</b>
           </Typography>
         </Title>
       </Container>

@@ -3,11 +3,12 @@ import * as contactsOperations from '../../../redux/contacts/contacts-operations
 import { useDispatch } from 'react-redux';
 import { ListItem, Name, Number, BtnDelete } from './ContactItem.styled';
 // ----------------------------------- Icons
-import { FaTrashAlt } from 'react-icons/fa';
+import { TiDelete } from 'react-icons/ti';
 import { IoIosContact } from 'react-icons/io';
 import { AiFillPhone } from 'react-icons/ai';
 // ----------------------------------- MUI
-import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
@@ -20,12 +21,20 @@ export const ContactItem = ({ id, name, number }) => {
   };
 
   return (
-    <Button
-      type="button"
-      variant="outlined"
-      sx={{ m: 1, p: 0.5, boxShadow: '1px 3px 10px -4px #050505' }}
-    >
-      <ListItem>
+    <ListItem>
+      <Box
+        component={Paper}
+        // variant="outlined"
+        sx={{
+          m: 1,
+          p: 1,
+          boxShadow: '1px 3px 10px -4px #050505',
+          pt: 1,
+          pb: 1,
+          borderRadius: '4px',
+          color: '#478d95',
+        }}
+      >
         <Name>
           <IoIosContact style={{ paddingTop: '2', marginRight: '5' }} />
           {name}:
@@ -36,10 +45,10 @@ export const ContactItem = ({ id, name, number }) => {
           {number}
         </Number>
         <BtnDelete type="button" onClick={handleDeleteContact}>
-          <FaTrashAlt style={{ width: '15' }} />
+          <TiDelete style={{ width: '25', height: '25' }} />
         </BtnDelete>
-      </ListItem>
-    </Button>
+      </Box>
+    </ListItem>
   );
 };
 

@@ -19,11 +19,20 @@ export const Title = styled.div`
   text-align: left;
   border-radius: 5px;
   box-shadow: 1px 3px 10px -4px #050505;
+  @media (max-width: 550px) {
+    font-size: 16px;
+  }
 `;
 export const Accent = styled.span`
+  color: #478d95;
   padding: 26px 50px 24px;
+  /* padding: 10px; */
   font-size: 60px;
   font-weight: 600;
-  border: 1px solid #488d96;
+  /* border: 1px solid #488d96; */
   border-radius: 5px;
+
+  @media (max-width: 550px) {
+    font-size: 30px;
+  }
 `;

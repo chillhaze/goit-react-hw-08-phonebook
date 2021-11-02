@@ -48,7 +48,7 @@ img {
 
 body {
   margin: 0;
-  padding: 10px 20px;
+  padding: 10px 30px;
   font-family: -apple-system, 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -63,4 +63,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media screen and (max-width: 550px) {
+  body {
+    padding: 4px 8px;
+  }
 }

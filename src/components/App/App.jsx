@@ -15,12 +15,24 @@ import bgImageDark from '../../images/bg-hd-dark.jpg';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // ----------------------------------- LazyLoad
-const HomeView = lazy(() => import('../../views/HomeView/HomeView'));
-const ContactsView = lazy(() =>
-  import('../../views/ContactsView/ContactsView'),
+const HomeView = lazy(() =>
+  import('../../views/HomeView/HomeView' /* webpackChunkName: "home-view" */),
 );
-const SignUpView = lazy(() => import('../../views/SignUpView/SignUpView'));
-const LoginView = lazy(() => import('../../views/LoginView/LoginView'));
+const ContactsView = lazy(() =>
+  import(
+    '../../views/ContactsView/ContactsView' /* webpackChunkName: "contacts-view" */
+  ),
+);
+const SignUpView = lazy(() =>
+  import(
+    '../../views/SignUpView/SignUpView' /* webpackChunkName: "signUp-view" */
+  ),
+);
+const LoginView = lazy(() =>
+  import(
+    '../../views/LoginView/LoginView' /* webpackChunkName: "logIn-view" */
+  ),
+);
 // -----------------------------------
 
 const App = () => {
